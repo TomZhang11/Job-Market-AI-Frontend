@@ -41,7 +41,7 @@ function App() {
     // get response from backend
     let finalResponse = "";
     try {
-      const response = await fetch("http://localhost:8000/query", {
+      const response = await fetch("http://jobmarket-ai-backend-a6cqg6enhufkcuf0.canadacentral-01.azurewebsites.net/query", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -90,7 +90,7 @@ function App() {
     try {
       const formData = new FormData();
       formData.append('file', file, file.name);
-      const response = await fetch("http://localhost:8000/upload_resume", {
+      const response = await fetch("http://jobmarket-ai-backend-a6cqg6enhufkcuf0.canadacentral-01.azurewebsites.net/upload_resume", {
         method: "POST",
         body: formData,
       });
