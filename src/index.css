@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+/* Typing indicator: left-to-right flashing dots */
+@keyframes dotPulse {
+  0% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+  100% { opacity: 0.25; transform: scale(1); }
+}
+
+/* 3 dots animation for waiting on backend response */
+.typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.typing .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: #9ca3af; /* tailwind slate-400 */
+  animation: dotPulse 1s infinite ease-in-out;
+}
+
+.typing .dot:nth-child(2) { animation-delay: 0.15s; }
+.typing .dot:nth-child(3) { animation-delay: 0.30s; }
