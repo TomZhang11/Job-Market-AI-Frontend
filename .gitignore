@@ -7,10 +7,16 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Node and build artifacts
+node_modules/
+dist/
+dist-ssr/
+build/
+coverage/
+package-lock.json
 *.local
+tmp/
+temp/
 
 # Editor directories and files
 .vscode/*

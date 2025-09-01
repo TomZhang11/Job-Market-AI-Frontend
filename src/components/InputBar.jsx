@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import fileSvg from "../assets/file.svg";
+import globeSvg from "../assets/globe.svg";
 
 export default function InputBar({ onSubmit, isLoading, placeholder, fadeClass, floatingClass, onToggleWebSearch, onResumeUploaded }) {
   const pRef = useRef(null);
@@ -87,7 +89,7 @@ export default function InputBar({ onSubmit, isLoading, placeholder, fadeClass, 
                   setShowOptions(false);
                 }}
               >
-                <img src="/file.svg" alt="" className="w-4 h-4" />
+                <img src={fileSvg} alt="" className="w-4 h-4" />
                 <span className="text-black">Upload resume</span>
               </button>
               <button
@@ -104,7 +106,7 @@ export default function InputBar({ onSubmit, isLoading, placeholder, fadeClass, 
                 }}
                 aria-pressed={webSearchSelected}
               >
-                <img src="/globe.svg" alt="" className="w-4 h-4" />
+                <img src={globeSvg} alt="" className="w-4 h-4" />
                 <span className={webSearchSelected ? "text-blue-600" : "text-black"}>Web search</span>
               </button>
             </div>
