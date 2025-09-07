@@ -13,7 +13,7 @@ function App() {
   ]
   const placeholdersWebSearch = [
     "What is the newest frontend framework?",
-    "What features are added in Langchain 2.1?",
+    "What features are added in Langchain 0.3.27?",
     "What companies are hiring ML interns right now?",
     "What are the latest trends in AI jobs this week?",
     "Show recent news on JavaScript frameworks"
@@ -136,6 +136,7 @@ function App() {
         fadeClass={fadeClass}
         floatingClass={context.length === 0 ? 'translate-y-[-40vh]' : 'translate-y-0'}
         onToggleWebSearch={(on) => setIsWebSearch(Boolean(on))}
+q        isWebSearch={isWebSearch}
         onResumeUploaded={(file) => submitResume(file)}
       />
     </div>

@@ -2,12 +2,11 @@ import { useRef, useState } from "react";
 import fileSvg from "../assets/file.svg";
 import globeSvg from "../assets/globe.svg";
 
-export default function InputBar({ onSubmit, isLoading, placeholder, fadeClass, floatingClass, onToggleWebSearch, onResumeUploaded }) {
+export default function InputBar({ onSubmit, isLoading, placeholder, fadeClass, floatingClass, onToggleWebSearch, onResumeUploaded, isWebSearch }) {
   const pRef = useRef(null);
   const fileInputRef = useRef(null);
   const [isEmpty, setIsEmpty] = useState(true);
   const [showOptions, setShowOptions] = useState(false);
-  const [webSearchSelected, setWebSearchSelected] = useState(false);
 
   // focus inpput bar
   const handleClick = () => {
@@ -18,10 +17,10 @@ export default function InputBar({ onSubmit, isLoading, placeholder, fadeClass, 
   const submit = () => {
     const query = pRef.current?.textContent?.trim() ?? "";
     if (!query) return;
-    onSubmit(query, webSearchSelected, () => {
+    onSubmit(query, isWebSearch, () => {
       if (pRef.current) pRef.current.textContent = "";
       setIsEmpty(true);
-      setWebSearchSelected(false);
+      if (onToggleWebSearch) onToggleWebSearch(false);
     });
   };
 
@@ -82,7 +81,7 @@ export default function InputBar({ onSubmit, isLoading, placeholder, fadeClass, 
             <div className="absolute bottom-full mb-2 left-0 inline-flex flex-col overflow-hidden rounded-xl border border-gray-300 bg-white shadow-sm w-max z-10">
               <button
                 type="button"
-                className="inline-flex items-center gap-2 px-3 py-1.5 whitespace-nowrap w-max hover:bg-gray-50"
+                className="flex w-full items-center gap-2 px-3 py-1.5 whitespace-nowrap hover:bg-gray-50"
                 onClick={(e) => {
                   e.stopPropagation();
                   fileInputRef.current?.click();
@@ -94,20 +93,16 @@ export default function InputBar({ onSubmit, isLoading, placeholder, fadeClass, 
               </button>
               <button
                 type="button"
-                className="inline-flex items-center gap-2 px-3 py-1.5 whitespace-nowrap w-max hover:bg-gray-50"
+                className="flex w-full items-center gap-2 px-3 py-1.5 whitespace-nowrap hover:bg-gray-50"
                 onClick={(e) => {
                   e.stopPropagation();
-                  setWebSearchSelected((v) => {
-                    const next = !v;
-                    if (onToggleWebSearch) onToggleWebSearch(next);
-                    return next;
-                  });
+                  if (onToggleWebSearch) onToggleWebSearch(!isWebSearch);
                   setShowOptions(false);
                 }}
-                aria-pressed={webSearchSelected}
+                aria-pressed={isWebSearch}
               >
                 <img src={globeSvg} alt="" className="w-4 h-4" />
-                <span className={webSearchSelected ? "text-blue-600" : "text-black"}>Web search</span>
+                <span className={isWebSearch ? "text-blue-600" : "text-black"}>Web search</span>
               </button>
             </div>
           )}
