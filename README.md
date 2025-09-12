@@ -36,3 +36,7 @@ Open `http://localhost:5173`.
 - Frontend: Host the Vite build on S3 + CloudFront or serve from an EC2/Amplify app. Update CORS in `backend/main.py` to your CloudFront/Amplify domain.
 
 
+
+## See also
+
+- Backend (GitHub): https://github.com/TomZhang11/Job-Market-AI-Backend
