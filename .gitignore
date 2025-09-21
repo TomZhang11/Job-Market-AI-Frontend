@@ -18,6 +18,9 @@ package-lock.json
 tmp/
 temp/
 
+# Environment files
+.env
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

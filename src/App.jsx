@@ -3,6 +3,8 @@ import ChatHistory from "./components/ChatHistory";
 import InputBar from "./components/InputBar";
 import useRotatingPlaceholder from "./hooks/useRotatingPlaceholder";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 function App() {
   // placeholders for the input bar
   const placeholders = [
@@ -41,7 +43,7 @@ function App() {
     // get response from backend
     let finalResponse = "";
     try {
-      const response = await fetch("https://jobmarket-ai-backend-a6cqg6enhufkcuf0.canadacentral-01.azurewebsites.net/query", {
+      const response = await fetch(`${API_BASE_URL}/query`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -90,7 +92,7 @@ function App() {
     try {
       const formData = new FormData();
       formData.append('file', file, file.name);
-      const response = await fetch("https://jobmarket-ai-backend-a6cqg6enhufkcuf0.canadacentral-01.azurewebsites.net/upload_resume", {
+      const response = await fetch(`${API_BASE_URL}/upload_resume`, {
         method: "POST",
         body: formData,
       });
@@ -136,7 +138,7 @@ function App() {
         fadeClass={fadeClass}
         floatingClass={context.length === 0 ? 'translate-y-[-40vh]' : 'translate-y-0'}
         onToggleWebSearch={(on) => setIsWebSearch(Boolean(on))}
-q        isWebSearch={isWebSearch}
+        isWebSearch={isWebSearch}
         onResumeUploaded={(file) => submitResume(file)}
       />
     </div>
